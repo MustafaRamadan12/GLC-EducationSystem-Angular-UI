@@ -1,0 +1,136 @@
+<main class="form-signin w-100 m-auto">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <h1 class="h3 mb-3 fw-normal">Register</h1>
+
+        <!-- Name Input -->
+        <div class="form-floating">
+            <input formControlName="name" type="text" class="form-control" id="floatingName" placeholder="Mohamed"
+                [ngClass]="{'is-invalid':f['name'].touched && f['name'].invalid}" name="name">
+            <label for="floatingName">Name</label>
+        </div>
+        <div *ngIf="f['name']?.['pending']">checking for uniqueness...</div>
+        <div *ngIf="f['name']?.touched && f['name']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['name'].errors?.['required']">username is required</div>
+            <div *ngIf="f['name'].errors?.['unique']">username is already taken</div>
+        </div>
+        <!-- End of name input -->
+
+        <!-- email Input -->
+        <div class="form-floating">
+            <input formControlName="email" type="email" class="form-control" id="floatingInput"
+                placeholder="name@example.com" [ngClass]="{'is-invalid': f['email'].touched && f['email'].invalid}">
+            <label for="floatingInput">Email</label>
+        </div>
+        <div *ngIf="f['email']?.['pending']">checking for uniqueness...</div>
+        <div *ngIf="f['email']?.touched && f['email']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['email']?.errors?.['unique']">email is already exists</div>
+            <div *ngIf="f['email']?.errors?.['required']">email is required</div>
+            <div *ngIf="f['email']?.errors?.['email']">email is not valid</div>
+        </div>
+        <!-- End of email input -->
+
+        <!-- password input -->
+        <div class="form-floating">
+            <input formControlName="password" type="password" class="form-control" id="floatingPassword"
+                placeholder="Password" [ngClass]="{'is-invalid': f['password'].touched && f['password'].invalid}">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div *ngIf="f['password']?.touched && f['password']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['password']?.errors?.['required']">password is required</div>
+            <div *ngIf="f['password']?.errors?.['matchPattern']"> password should be 6-length with
+                uppercase, lowercase, digit, special character,
+            </div>
+        </div>
+        <!-- End of password input -->
+
+
+        <!-- confirm password input -->
+        <div class="form-floating">
+            <input formControlName="confirmPassword" type="password" class="form-control" id="floatingConfirmPassword"
+                placeholder="Confirm Password"
+                [ngClass]="{'is-invalid': f['confirmPassword'].touched && f['confirmPassword'].invalid}">
+            <label for="floatingPassword">Confirm Password</label>
+        </div>
+        <div *ngIf="f['confirmPassword']?.touched && f['confirmPassword']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['confirmPassword']?.errors?.['required']">confirmPassword is required</div>
+            <div *ngIf="f['confirmPassword']?.errors?.['notMatched']">confirm password doesnot match with password</div>
+        </div>
+        <!-- End of confirm password input -->
+
+        <!-- address input -->
+        <div class="form-floating">
+            <input formControlName="address" type="text" class="form-control" id="floatingAddress" placeholder="Address"
+                [ngClass]="{'is-invalid': f['address'].touched && f['address'].invalid}">
+            <label for="floatingAddress">Address</label>
+        </div>
+        <div *ngIf="f['address']?.touched && f['address']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['address']?.errors?.['required']">address is required</div>
+        </div>
+        <!-- End of address -->
+
+        <!-- age input -->
+        <div class="form-floating">
+            <input formControlName="age" type="text" class="form-control" id="floatingAge" placeholder="Age"
+                [ngClass]="{'is-invalid': f['age'].touched && f['age'].invalid}">
+            <label for="floatingAge">Age</label>
+        </div>
+        <div *ngIf="f['age']?.touched && f['age']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['age']?.errors?.['required']"> age is required</div>
+            <div *ngIf="f['age']?.errors?.['min'] || f['age']?.errors?.['max']">
+                age must be between 14 ~ 18
+            </div>
+        </div>
+        <!-- end of input age -->
+
+        <!-- parent email input -->
+        <div class="form-floating">
+            <input formControlName="parentEmail" type="text" class="form-control" id="floatingParentEmail"
+                placeholder="Parent Email"
+                [ngClass]="{'is-invalid' : f['parentEmail'].touched && f['parentEmail'].invalid}">
+            <label for="floatingParentEmail">Parent Email</label>
+        </div>
+        <div *ngIf="f['parentEmail']?.touched && f['parentEmail']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['parentEmail']?.errors?.['required']">parent email is required</div>
+            <div *ngIf="f['parentEmail']?.errors?.['email']">email is invalid</div>
+        </div>
+        <!-- End of parent email input -->
+
+        <!-- Gender input -->
+        <div class="my-3">
+            <div class="form-check">
+                <input formControlName="gender" id="male" name="gender" type="radio" class="form-check-input"
+                    value="male" required (change)="changeMaleState()">
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check">
+                <input formControlName="gender" id="female" name="gender" type="radio" class="form-check-input"
+                    value="female" required (change)="changeFemaleState()">
+                <label class="form-check-label" for="female">Female</label>
+            </div>
+        </div>
+        <div *ngIf="f['gender']?.touched && f['gender']?.invalid" class="alert alert-danger">
+            <div *ngIf="f['gender']?.errors?.['required']">please select your gender</div>
+        </div>
+        <!-- End of Gender input -->
+
+        <!-- Level input  -->
+        <div class="form-floating">
+
+            <select formControlName="level" id="selectLevel" class="form-select" aria-label="Default select example"
+                name="level">
+                <option selected disabled value="">Select Level</option>
+                <option value="1">First Secondary</option>
+                <option value="2">Second Secondary</option>
+                <option value="3">Third Secondary</option>
+            </select>
+            <!-- End of Level input -->
+
+            <!-- <input type="text" class="form-control" id="floatingAge" placeholder="Age"> -->
+            <!-- <label for="selectLevel">Level</label> -->
+        </div>
+
+      
+        <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="form.invalid">Sign up</button>
+        <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p> -->
+    </form>
+</main>

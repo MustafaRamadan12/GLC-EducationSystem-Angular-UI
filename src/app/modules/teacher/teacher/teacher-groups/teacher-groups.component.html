@@ -1,0 +1,16 @@
+<h1 style="margin: 10px; background-color: darkgrey; border-radius: 10px;padding:10px; text-align: center;">Your Groups</h1>
+<div   class="container-fluid" style="display: flex; flex-wrap: wrap;align-self: center;">
+<div id="card" style="width: 30rem; margin: 10px; padding: 10px;" *ngFor="let i of teacherGroups"  class="col-6">
+    <div style="align-content: center; align-items: center;  background-color:lightgray; margin: 10px;border-radius:10px ;text-align: center;">
+      <h4 class="card-title"> Group Day: {{i.day}} </h4>
+      <h4 class="card-title"> Group From: {{i.from}} </h4>
+      <h4 class="card-title"> Group To: {{i.to}} </h4>
+      <h4 class="card-title"> Group capacity: {{i.capacity}} </h4>
+      <h4 class="card-title "> Number of Students: {{i.numOfStudents}} </h4>    
+      <br> 
+      <a routerLink="/chat" class="btn btn-primary">Go To Chat</a>
+      <br>
+      <br>
+    </div>
+
+</div>
